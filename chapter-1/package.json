@@ -1,0 +1,28 @@
+{
+  "name": "chapter-1",
+  "version": "1.0.0",
+  "description": "Chapter 1: Your First TypeScript Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spaceinvadev/essential-typescript.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "EssentialTypeScript",
+    "Begginer",
+    "JavaScript"
+  ],
+  "author": "Mauricio Paternina",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spaceinvadev/essential-typescript/issues"
+  },
+  "homepage": "https://github.com/spaceinvadev/essential-typescript#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}

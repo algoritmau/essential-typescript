@@ -1,5 +1,10 @@
 import { TodoItem } from './todoItem'
 
+type ItemCounts = {
+  total: number
+  incomplete: number
+}
+
 export class TodoCollection {
   private nextId: number = 1
   // Store TodoItem objects in a Map
@@ -45,5 +50,12 @@ export class TodoCollection {
         this.itemMap.delete(item.id)
       }
     })
+  }
+
+  getTodoItemsCount(): ItemCounts {
+    return {
+      total: this.itemMap.size,
+      incomplete: this.getTodoItems(false).length
+    }
   }
 }

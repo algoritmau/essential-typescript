@@ -10,8 +10,8 @@ let todos = [
 ];
 let collection = new todoCollection_1.TodoCollection('Mauricio', todos);
 console.clear();
-console.log(`${collection.userName}'s Todo List`);
+console.log(`${collection.userName}'s Todo List (${collection.getTodoItemsCount().incomplete} remaining items to do)`);
 // collection.addTodo(todoItem)
-collection.removeCompleteTodo();
+// collection.removeCompleteTodo()
 // Use the new TodoCollection class feature and display a simple list of to-do items to the user
 collection.getTodoItems(true).forEach((item) => item.printDetails());

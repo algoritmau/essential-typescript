@@ -2,9 +2,13 @@ import { TodoItem } from './todoItem'
 
 export class TodoCollection {
   private nextId: number = 1
+  // Store TodoItem objects in a Map
+  private itemMap = new Map<number, TodoItem>()
 
   constructor(public userName: string, public todoItems: TodoItem[] = []) {
-    // No statements required
+    todoItems.forEach((item) => {
+      this.itemMap.set(item.id, item)
+    })
   }
 
   addTodo(task: string): number {
@@ -12,13 +16,13 @@ export class TodoCollection {
       this.nextId++
     }
 
-    this.todoItems.push(new TodoItem(this.nextId, task))
+    this.itemMap.set(this.nextId, new TodoItem(this.nextId, task))
 
     return this.nextId
   }
 
   getTodoById(id: number): TodoItem {
-    return this.todoItems.find((item) => item.id === id)
+    return this.itemMap.get(id)
   }
 
   markComplete(id: number, complete: boolean) {

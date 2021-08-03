@@ -13,8 +13,6 @@ let collection: TodoCollection = new TodoCollection('Mauricio', todos)
 console.clear()
 console.log(`${collection.userName}'s Todo List`)
 
-let newId: number = collection.addTodo('Go for run')
-let todoItem: TodoItem = collection.getTodoById(newId)
-todoItem.printDetails()
-
 // collection.addTodo(todoItem)
+// Use the new TodoCollection class feature and display a simple list of to-do items to the user
+collection.getTodoItems(true).forEach((item) => item.printDetails())

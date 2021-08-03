@@ -7,17 +7,24 @@ class TodoCollection {
         this.userName = userName;
         this.todoItems = todoItems;
         this.nextId = 1;
-        // No statements required
+        // Store TodoItem objects in a Map
+        this.itemMap = new Map();
+        todoItems.forEach((item) => {
+            this.itemMap.set(item.id, item);
+        });
     }
     addTodo(task) {
         while (this.getTodoById(this.nextId)) {
             this.nextId++;
         }
-        this.todoItems.push(new todoItem_1.TodoItem(this.nextId, task));
+        this.itemMap.set(this.nextId, new todoItem_1.TodoItem(this.nextId, task));
         return this.nextId;
     }
     getTodoById(id) {
-        return this.todoItems.find((item) => item.id === id);
+        return this.itemMap.get(id);
+    }
+    getTodoItems(includeComplete) {
+        return [...this.itemMap.values()].filter((item) => includeComplete || !item.complete);
     }
     markComplete(id, complete) {
         const todoItem = this.getTodoById(id);

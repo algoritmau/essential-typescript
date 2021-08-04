@@ -10,16 +10,23 @@ let todos: TodoItem[] = [
 ]
 
 let collection: TodoCollection = new TodoCollection('Mauricio', todos)
+let shouldShowCompleteTodos = true
 
 function displayTodosList(): void {
   console.log(
     `${collection.userName}'s Todo List (${
       collection.getTodoItemsCount().incomplete
-    } remaining items to do)`
+    } items to do)`
   )
+
+  // Allows the user to toggle the filter to include or exclude completed items
+  collection
+    .getTodoItems(shouldShowCompleteTodos)
+    .forEach((item) => item.printDetails())
 }
 
 enum Commands {
+  Toggle = 'Show/Hide Completed',
   Quit = 'Quit'
 }
 
@@ -35,7 +42,15 @@ function promptUser(): void {
       choices: Object.values(Commands)
     })
     .then((answers) => {
-      if (answers['command'] !== Commands.Quit) promptUser()
+      switch (answers['command']) {
+        case Commands.Toggle:
+          shouldShowCompleteTodos = !shouldShowCompleteTodos
+          promptUser()
+          break
+
+        default:
+          break
+      }
     })
 }
 

@@ -10,11 +10,17 @@ let todos = [
     new todoItem_1.TodoItem(4, 'Call Jane', true)
 ];
 let collection = new todoCollection_1.TodoCollection('Mauricio', todos);
+let shouldShowCompleteTodos = true;
 function displayTodosList() {
-    console.log(`${collection.userName}'s Todo List (${collection.getTodoItemsCount().incomplete} remaining items to do)`);
+    console.log(`${collection.userName}'s Todo List (${collection.getTodoItemsCount().incomplete} items to do)`);
+    // Allows the user to toggle the filter to include or exclude completed items
+    collection
+        .getTodoItems(shouldShowCompleteTodos)
+        .forEach((item) => item.printDetails());
 }
 var Commands;
 (function (Commands) {
+    Commands["Toggle"] = "Show/Hide Completed";
     Commands["Quit"] = "Quit";
 })(Commands || (Commands = {}));
 function promptUser() {
@@ -28,8 +34,14 @@ function promptUser() {
         choices: Object.values(Commands)
     })
         .then((answers) => {
-        if (answers['command'] !== Commands.Quit)
-            promptUser();
+        switch (answers['command']) {
+            case Commands.Toggle:
+                shouldShowCompleteTodos = !shouldShowCompleteTodos;
+                promptUser();
+                break;
+            default:
+                break;
+        }
     });
 }
 promptUser();

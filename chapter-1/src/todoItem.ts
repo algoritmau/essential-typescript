@@ -5,10 +5,9 @@ export class TodoItem {
     public complete: boolean = false
   ) {}
 
-  /**
-   * printDetails
-   */
   printDetails(): void {
-    console.log(`${this.id}\t${this.task} ${this.complete ? '\tcomplete' : ''}`)
+    console.log(
+      `${this.id}\t${this.task} ${this.complete ? '\t(complete)' : ''}`
+    )
   }
 }

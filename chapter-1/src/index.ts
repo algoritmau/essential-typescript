@@ -26,8 +26,27 @@ function displayTodosList(): void {
 }
 
 enum Commands {
+  Add = 'Add New Task',
   Toggle = 'Show/Hide Completed',
   Quit = 'Quit'
+}
+
+function promptAdd(): void {
+  console.clear()
+
+  inquirer
+    .prompt({
+      type: 'input',
+      name: 'add',
+      message: 'Enter task'
+    })
+    .then((answers) => {
+      if (answers['add'] !== '') {
+        collection.addTodo(answers['add'])
+      }
+
+      promptUser()
+    })
 }
 
 function promptUser(): void {
@@ -48,6 +67,10 @@ function promptUser(): void {
           promptUser()
           break
 
+        case Commands.Add:
+          promptAdd()
+          break
+
         default:
           break
       }
@@ -55,8 +78,3 @@ function promptUser(): void {
 }
 
 promptUser()
-
-// collection.addTodo(todoItem)
-// collection.removeCompleteTodo()
-// Use the new TodoCollection class feature and display a simple list of to-do items to the user
-// collection.getTodoItems(true).forEach((item) => item.printDetails())

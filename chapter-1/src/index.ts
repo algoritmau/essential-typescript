@@ -1,6 +1,7 @@
 import { TodoItem } from './todoItem'
 import { TodoCollection } from './todoCollection'
 import * as inquirer from 'inquirer'
+import { JsonTodoCollection } from './jsonTodoCollection'
 
 let todos: TodoItem[] = [
   new TodoItem(1, 'Buy Flowers'),
@@ -9,7 +10,7 @@ let todos: TodoItem[] = [
   new TodoItem(4, 'Call Jane', true)
 ]
 
-let collection: TodoCollection = new TodoCollection('Mauricio', todos)
+let collection: TodoCollection = new JsonTodoCollection('Mauricio', todos)
 let shouldShowCompleteTodos = true
 
 function displayTodosList(): void {

@@ -8,6 +8,7 @@ class TodoCollection {
         this.todoItems = todoItems;
         this.nextId = 1;
         // Store TodoItem objects in a Map
+        // Changed access control keyword so that subclasses can access the Map
         this.itemMap = new Map();
         todoItems.forEach((item) => {
             this.itemMap.set(item.id, item);
